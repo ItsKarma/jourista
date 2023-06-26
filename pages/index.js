@@ -126,11 +126,11 @@ export default function Home() {
               </p>
             )}
             <p className="text-gray-600 text-xs italic">
-              Make it as detailed as you'd like. Examples: <br />
-              "Anywhere in the World" <br />
-              "Anywhere in America" <br />
-              "New York City, NY, USA" <br />
-              "Lower Manhattan"
+              Make it as detailed as you&apos;d like. Examples: <br />
+              &quot;Anywhere in the World&quot; <br />
+              &quot;Anywhere in America&quot; <br />
+              &quot;New York City, NY, USA&quot; <br />
+              &quot;Lower Manhattan&quot;
             </p>
           </div>
         </div>
