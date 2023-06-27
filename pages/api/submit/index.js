@@ -25,26 +25,43 @@ export default async function handler(req, res) {
 
   const prompt = `${pDays} ${pPeople} ${pDestination} ${pSource} ${pBudget} ${pFlight} ${pHotel} ${pRental} ${pIdeas}`;
 
+  console.log(prompt);
+
   // Call the OpenAI API
-  const chatCompletion = await openai.createChatCompletion({
-    model: "gpt-3.5-turbo",
-    messages: [
-      { role: "system", content: "Travel Agent." },
-      { role: "user", content: prompt },
-    ],
-  });
+  try {
+    const chatCompletion = await openai.createChatCompletion(
+      {
+        model: "gpt-3.5-turbo",
+        messages: [
+          { role: "system", content: "Travel Agent." },
+          { role: "user", content: prompt },
+        ],
+      },
+      {
+        timeout: 60000,
+      }
+    );
 
-  // log the output to the console
-  console.log(chatCompletion.data.choices[0].message.content);
-  console.log(chatCompletion.data.usage);
+    // log the output to the console
+    console.log(chatCompletion.data.choices[0].message.content);
+    console.log(chatCompletion.data.usage);
 
-  // pluck out the details that we can use for travelociy, expedia, etc.
-  // generate the affiliate links
-  // return the response and the links to the frontend
+    // pluck out the details that we can use for travelociy, expedia, etc.
+    // generate the affiliate links
+    // return the response and the links to the frontend
 
-  const response = {
-    content: chatCompletion.data.choices[0].message.content,
-  };
-
-  res.status(200).json(response);
+    const response = {
+      content: chatCompletion.data.choices[0].message.content,
+    };
+    res.status(200).json(response);
+  } catch (error) {
+    if (error.response) {
+      console.log(error.response.status);
+      console.log(error.response.data);
+      res.status(error.response.status).json(error.response.data);
+    } else {
+      console.log();
+      res.status(500).json(error.message);
+    }
+  }
 }
