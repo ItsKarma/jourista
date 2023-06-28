@@ -58,7 +58,7 @@ export default function Home() {
 
   const displayResponse = (
     <div className="flex w-full max-w-lg mt-10 mb-10">
-      <div className="flex flex-wrap -mx-3 mb-6">
+      <div className="flex flex-wrap mx-3 mb-6">
         <div className="w-full mb-6 md:mb-0">
           <p className="text text-gray-900 dark:text-gray-200">
             {messages[1] && messages[1].content}
@@ -320,7 +320,7 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center">
       <div className="class flex">
-        <p className="text-4xl font-bold text-center text-gray-900 dark:text-gray-300 mt-6">
+        <p className="text-4xl font-bold text-center text-gray-900 dark:text-gray-300 mt-6 mx-1">
           Let our AI generate your next trip
         </p>
       </div>
